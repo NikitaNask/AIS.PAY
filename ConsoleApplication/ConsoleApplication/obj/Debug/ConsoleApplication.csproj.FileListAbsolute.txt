@@ -1,0 +1,9 @@
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\bin\Debug\ConsoleApplication.exe.config
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\bin\Debug\ConsoleApplication.exe
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\bin\Debug\ConsoleApplication.pdb
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\obj\Debug\ConsoleApplication.csproj.CoreCompileInputs.cache
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\obj\Debug\ConsoleApplication.exe
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\obj\Debug\ConsoleApplication.pdb
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Naskalnyuk_Junior\ConsoleApplication\ConsoleApplication\bin\Debug\Newtonsoft.Json.xml

@@ -1,0 +1,6 @@
+C:\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.exe.config
+C:\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.exe
+C:\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.pdb
+C:\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.exe
+C:\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.pdb
