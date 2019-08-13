@@ -1,94 +1,14 @@
 ﻿using System;
 using System.Text;
 using System.Threading;
-using System.IO;
 using System.Net;
-using System.Globalization;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Net.Sockets;
-using System.Text.RegularExpressions;
-using AIS.PAY.PaymentSendToKkm;
-using System.Runtime.Serialization;
-using AIS.PAY.Framework.Util;
-using System.Web;
-using System.Runtime.Serialization.Json;
-
+using System.Globalization;
 
 namespace ConsoleApplication
 {
-    [DataContract]
-    public class DataJSON
-    {
-        [DataMember]
-        public string token { get; set; }
-        [DataMember]
-        public string error { get; set; }
-        [DataMember]
-        public string timestamp { get; set; }
-        [DataMember]
-        public string uuid { get; set; }
-        [DataMember]
-        public string status { get; set; }
-    }
-    [DataContract]
-    public class DataJSONPayloadError
-    {
-        [DataMember]
-        public string error_id { get; set; }
-        [DataMember]
-        public int code { get; set; }
-        [DataMember]
-        public string text { get; set; }
-        [DataMember]
-        public string type { get; set; }
-    }
-    [DataContract]
-    public class DataJSONPayload
-    {
-        [DataMember]
-        public string uuid { get; set; }
-        [DataMember]
-        public DataJSONPayloadError error { get; set; }
-        [DataMember]
-        public string status { get; set; }
-        [DataMember]
-        public string total { get; set; }
-        [DataMember]
-        public string fns_site { get; set; }
-        [DataMember]
-        public string fn_number { get; set; }
-        [DataMember]
-        public string shift_number { get; set; }
-        [DataMember]
-        public string receipt_datetime { get; set; }
-        [DataMember]
-        public string fiscal_receipt_number { get; set; }
-        [DataMember]
-        public string fiscal_document_number { get; set; }
-        [DataMember]
-        public string ecr_registration_number { get; set; }
-        [DataMember]
-        public string fiscal_document_attribute { get; set; }
-        [DataMember]
-        public string error_id { get; set; }
-        [DataMember]
-        public string code { get; set; }
-        [DataMember]
-        public string text { get; set; }
-        [DataMember]
-        public string type { get; set; }
-
-    }
-    public class request
-    {
-        public string groupOperId { get; set; }
-        public string email { get; set; }
-        public string summ { get; set; }
-        public string textCheck { get; set; }
-        public string operatorName { get; set; }
-        public string uuid { get; set; }
-    }
     public class kkmServiceResponseAtol
     {
         [XmlElement("code")]
@@ -117,355 +37,153 @@ namespace ConsoleApplication
         public long shift_number { get; set; }
         public double total { get; set; }
     }
+    public class kkmServiceResponse
+    {
+        [XmlElement("code")]
+        public int code { get; set; }
+        [XmlElement("message")]
+        public string errorMessage { get; set; }
+        public long groupOperId { get; set; }
+        public string checkNumber { get; set; }
+
+
+        public string Kkmserialnumber { get; set; }
+        public string Kkmeklznumber { get; set; }
+        public string Kkmshiftsessionnumber { get; set; }
+        public decimal Kkmglobalsummpaymentfrom { get; set; }
+        public decimal ShiftSummIncome { get; set; } // сумма продаж за смену
+        public DateTime LastKPKDateTime { get; set; } // Вернуть дату и время последней фискальной операции
+
+        public decimal shiftSummPayment { get; set; }
+        public decimal shiftSummPaymentRevert { get; set; }
+        public int operationDocumentNumber { get; set; }
+        public long shiftReceiptRevertNumber { get; set; }
+        public long shiftReceiptNumber { get; set; }
+        public string operationNumberFPD { get; set; }
+        public string registrationNumberKKT { get; set; } // регистрационный номер ккт
+        public string countDocumentNotSentOFD { get; set; } // количество документов не отправленных в ОФД
+
+        //public bool ReadyToPrint { get; set; } // Готовность ККМ к печати чеков
+        //public int StatusCheck { get; set; } // Статус чека
+
+        public string requestDate { get; set; }
+        // Только для Атола онлайн
+        public string atoluuid { get; set; }
+
+        //public kkmServiceResponse()
+        //{
+        //    LastKPKDateTime = Constants.SQLNullDate;
+        //}
+    }
+
+    [XmlRoot("request")]
+    public class kkmServiceRequest
+    {
+        public long groupOperId { get; set; }
+        public string email { get; set; }
+        public string summ { get; set; }
+        public string textCheck { get; set; }
+        public string operatorName { get; set; }
+        public string uuid { get; set; }
+    }
     public class ClientObject
     {
 
         public TcpClient client;
-        public ClientObject(TcpClient tcpClient)
+        ServiceConfig m_Config;
+        public ClientObject(TcpClient tcpClient,ServiceConfig m_Config)
         {
             client = tcpClient;
+            this.m_Config = m_Config;
         }
         private static string token = "";
         private static string timestamp = "";
         private static bool openChange;
         private string exeptionMessage;
         private static DateTime timeToken;
-        //private static string m_UUID;
-        //private string status;
-        //private static string callbackUrl;
 
         public static Object SyncObj = new Object();
-        public ServiceConfig m_Config { get; set; }
 
-        private string GetToken()
+        private kkmServiceResponse SendInfoToKKM(kkmServiceRequest request, out string forceXml)
         {
-            try
-            {
-                if ((DateTime.UtcNow - timeToken).TotalHours >= 20)
+            forceXml = null;
+            string a_uuid;
+            string a_exeptionMessage;
+            string a_status;
+            CultureInfo m_formatProvider = new CultureInfo("en-US", true);
+            m_formatProvider.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+            m_formatProvider.NumberFormat.NumberDecimalSeparator = ".";
+
+
+            kkmServiceResponse resp = new kkmServiceResponse();
+
+                lock (POSAtolOnline.SyncObj)
                 {
-                    openChange = false;
-                }
-                if (!openChange)
-                {
-                    LoginPass("https://testonline.atol.ru", "v4-online-atol-ru", "iGFFuihss", out exeptionMessage);
-                    if (exeptionMessage != "") return exeptionMessage;
-                }
-            }
-            catch (WebException ex)
-            {
-                var temp = ex.Response as HttpWebResponse;
+                    Logs.LogAdd("Данные для ККМ: m_Config.kkmTypeProtokol = " + m_Config.kkmTypeProtokol + " m_Config.kkmIPAddress = " + m_Config.kkmIPAddress + " m_Config.kkmPort = " +
+                                    m_Config.kkmPort);
 
-                string content;
-
-                using (var r = new StreamReader(ex.Response.GetResponseStream()))
-                    content = r.ReadToEnd();
-
-                switch (temp.StatusCode)
-                {
-                    case HttpStatusCode.Unauthorized:
-                        Logs.LogAdd("ОШИБКА: " + content);
-                        break;
-                }
-            }
-            return null;
-        }
-        private void LoginPass(string urlATOL, string login, string password, out string exeptionMessageLogin)
-        {
-            exeptionMessageLogin = "";
-            try
-            {
-                string url = urlATOL + "/possystem/v4/getToken";
+                    POSAtolOnline POSATOffline = new POSAtolOnline();
+                    POSATOffline.m_Config = m_Config;
 
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-                request.Method = "POST";
-                request.ContentType = "application/json; charset=utf-8";
-                string pData = @"{""login"":""" + login + @""",""pass"":""" + password + @"""}";
-
-                byte[] ByteArr = Encoding.UTF8.GetBytes(pData);
-                request.ContentLength = ByteArr.Length;
-                request.GetRequestStream().Write(ByteArr, 0, ByteArr.Length);
-
-                DataJSON dataJSON;
-
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                {
-                    using (StreamReader myStreamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+                    if (POSATOffline.SendPaymentATOL(m_Config, request, m_formatProvider, out a_uuid, out a_exeptionMessage, out a_status) != "")
                     {
-                        DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(DataJSON));
-                        dataJSON = (DataJSON)jsonFormatter.ReadObject(myStreamReader.BaseStream);
-                        Logs.LogAdd("Токен получен: " + dataJSON.token);
+                        Logs.LogAdd("Отправка на АТОЛОнлайн: ");
+                        resp.Kkmserialnumber = "";
+                        resp.Kkmeklznumber = "";
+                        resp.Kkmshiftsessionnumber = "";
+                        resp.Kkmglobalsummpaymentfrom = 0.0m;
+                        resp.ShiftSummIncome = 0.0m;
+                        resp.LastKPKDateTime = DateTime.Now;
+                        resp.checkNumber = "";
+                        resp.shiftSummPayment = 0.0m;
+                        resp.shiftSummPaymentRevert = 0.0m;
+                        resp.operationDocumentNumber = 0;
+                        resp.operationNumberFPD = "";
+                        resp.shiftReceiptNumber = 0;
+                        resp.shiftReceiptRevertNumber = 0;
+                        resp.countDocumentNotSentOFD = "";
+                        resp.registrationNumberKKT = "";
+                        resp.atoluuid = a_uuid;
+                        if (m_Config.debugLevel > 1) Logs.LogAdd("Отправлена грууповая операция: " + request.groupOperId + " Возвращенный UUID: " + a_uuid);
+
+                        resp.groupOperId = request.groupOperId;
+                        resp.requestDate = DateTime.Now.ToString("yyyy-MM-ssTHH:mm:ss");
+                        resp.code = 0;
+                        resp.errorMessage = "";
                     }
-                }
-                token = dataJSON.token;
-                timestamp = dataJSON.timestamp;
-                //timeToken = DateTime.ParseExact(dataJSON.timestamp, "dd.MM.yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                timeToken = DateTime.UtcNow;
-                openChange = true;
-            }
-            catch (WebException ex)
-            {
-                var temp = ex.Response as HttpWebResponse;
-
-                string content;
-
-                using (var r = new StreamReader(ex.Response.GetResponseStream()))
-                    content = r.ReadToEnd();
-
-                try
-                {
-                    using (var mm = new MemoryStream(Encoding.UTF8.GetBytes(content)))
+                    else
                     {
-                        using (StreamReader myStreamReader = new StreamReader(mm, Encoding.UTF8))
-                        {
-                            DataContractJsonSerializer jsonFormatter =
-                                new DataContractJsonSerializer(typeof(DataJSONPayload));
-                            var errorDataJSONPayload = (DataJSONPayload)jsonFormatter.ReadObject(myStreamReader.BaseStream);
-                            if (errorDataJSONPayload.error != null) exeptionMessage = errorDataJSONPayload.error.text;
-                        }
+                        Logs.LogAdd("Ошибка : ");
                     }
-                }
-                catch (Exception)
-                { }
-
-                switch (temp.StatusCode)
-                {
-                    case HttpStatusCode.Unauthorized:
-                        Logs.LogAdd("ОШИБКА: " + content);
-                        exeptionMessageLogin = content;
-                        break;
-                }
-            }
-            Console.ReadLine();
-        }
-
-        public string GetPayment(string uuid, ref kkmServiceResponseAtol kkmResponseAtol)
-        {
-            Logs.LogAdd("**************************** НАЧАЛО ОТВЕТА НА ЗАПРОС ФИСКАЛЬНЫХ ДАННЫХ ****************************");
-            if (timeToken.Hour == 20)
-            {
-                openChange = false;
-                GetToken();
-            }
-
-            exeptionMessage = GetToken();
-            if (!string.IsNullOrEmpty(exeptionMessage)) return exeptionMessage;
-
-            try
-            {
-                string url = m_Config.url + "/possystem/v4/" + m_Config.codeGroup + "/report/" + uuid + "?token=" + HttpUtility.UrlEncode(token);
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
 
-                request.Method = "GET";
-                request.ContentType = "application/json; charset=utf-8";
-                request.AllowAutoRedirect = true;
-                request.KeepAlive = true;
-                request.Timeout = 30000;
+                    if (resp.code != 0) resp.errorMessage += " (code=" + resp.code + ")";
 
-                WebResponse resp = request.GetResponse();
-                Stream dataStream = resp.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);
-                string outp = reader.ReadToEnd();
-
-                using (var mm = new MemoryStream(Encoding.UTF8.GetBytes(outp)))
-                {
-                    DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(kkmServiceResponseAtol));
-                    kkmResponseAtol = (kkmServiceResponseAtol)jsonFormatter.ReadObject(mm);
-                    Logs.LogAdd("Ответ от АТОЛА фискальный документ: " + kkmResponseAtol.fiscal_document_number);
-                }
-            }
-
-            catch (WebException ex)
-            {
-                var temp = ex.Response as HttpWebResponse;
-                Logs.LogAdd("ОШИБКА: " + ex.Message);
-                string content;
-
-                using (var r = new StreamReader(ex.Response.GetResponseStream()))
-                    content = r.ReadToEnd();
-
-                try
-                {
-                    using (var mm = new MemoryStream(Encoding.UTF8.GetBytes(content)))
+                    switch (resp.code)
                     {
-                        using (StreamReader myStreamReader = new StreamReader(mm, Encoding.UTF8))
-                        {
-                            DataContractJsonSerializer jsonFormatter =
-                                new DataContractJsonSerializer(typeof(DataJSONPayload));
-                            var errorDataJSONPayload = (DataJSONPayload)jsonFormatter.ReadObject(myStreamReader.BaseStream);
-                            if (errorDataJSONPayload.error != null) exeptionMessage = errorDataJSONPayload.error.text;
-                            Logs.LogAdd("Ошибка от АТОЛА : " + exeptionMessage);
-                        }
+                        case 0:
+                            //всё хорошо
+                            resp.code = 0;
+                            break;
+                        /*case 21:
+                            //ошибка, повторите запрос на печать
+                            resp.code = 1;
+                            break;*/
+                        default:
+                            //фатальная ошибка
+                            resp.code = 1;
+                            break;
                     }
-                }
-                catch (Exception)
-                {
-                }
-
-                switch (temp.StatusCode)
-                {
-                    case HttpStatusCode.Unauthorized:
-                        Logs.LogAdd("ОШИБКА: " + content);
-                        break;
-                }
             }
-            Logs.LogAdd("**************************** КОНЕЦ ОТВЕТА НА ЗАПРОС ФИСКАЛЬНЫХ ДАННЫХ ****************************");
-            return null;
+            return resp;
         }
 
-        //public string SendATOL(request m_request)
-        //{
-
-
-
-        //    string pData;
-        //    RootObject rt = new RootObject();
-        //    rt.external_id = m_request.groupOperId;
-        //    rt.timestamp = "2019-01-01 00:00:000";
-        //    rt.receipt = new Receipt();
-        //    rt.receipt.client = new Client() { email = "ann1ann@mail.ru" };
-        //    rt.receipt.company = new Company() { email = "ann1ann@mail.ru", inn = "731549876146", payment_address = "Димитровград, Ленина, 41В-28" };
-        //    rt.receipt.items = new System.Collections.Generic.List<Item>();
-        //    Item it = new Item()
-        //    {
-        //        name = "Коммунальные и иные услуги по ЕПД по лицевому счету № 89119160",
-        //        price = 6931.56,
-        //        quantity = 1,
-        //        sum = 6931.56,
-        //        payment_method = "full_payment",
-        //        payment_object = "service"
-        //    };
-        //    it.vat = new Vat() { type = "vat20" };
-        //    rt.receipt.items.Add(it);
-        //    rt.receipt.payments = new System.Collections.Generic.List<Payment>();
-        //    rt.receipt.payments.Add(new Payment() { sum = 10, type = 1 });
-        //    pData = Serializer.ToJson<RootObject>(rt);
-        //    return pData;
-        //}
-
-        public string SendPaymentATOL(ServiceConfig m_Config, request m_request, CultureInfo FormatProvider, out string UUID, out string exeptionMessage, out string status)
-        {
-
-            UUID = "Не присвоен";
-            exeptionMessage = "";
-            status = "";
-            string pData;
-
-            Logs.LogAdd("SendPaymentATOL()Пытаюсь отправить чек с групповой: " + m_request.groupOperId);
-
-            exeptionMessage = GetToken();
-            if (!string.IsNullOrEmpty(exeptionMessage)) return exeptionMessage;
-
-            //try
-            //{
-                string url = m_Config.url + "/possystem/v4/" + m_Config.codeGroup + "/sell";
-
-
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-
-                request.Method = "POST";
-                request.ContentType = "application/json; charset=utf-8";
-                request.Headers.Add("Token", token);
-
-                string summ = m_request.summ;
-                //m_request.groupOperId = new Random().Next(100000);
-                //m_request.groupOperId = 319979251;
-                m_request.email = "kkt@kkt.ru";
-
-
-                RootObject rt = new RootObject();
-                rt.external_id = m_request.groupOperId;
-                rt.timestamp = "2019-01-01 00:00:000";
-                rt.receipt = new Receipt();
-                rt.receipt.client = new Client() { email = "ann1ann@mail.ru" };
-                rt.receipt.company = new Company() { email = "ann1ann@mail.ru", inn = "731549876146", payment_address = "Димитровград, Ленина, 41В-28" };
-                rt.receipt.items = new System.Collections.Generic.List<Item>();
-                Item it = new Item()
-                {
-                    name = "Коммунальные и иные услуги по ЕПД по лицевому счету № 89119160",
-                    price = 6931.56,
-                    quantity = 1,
-                    sum = 6931.56,
-                    payment_method = "full_payment",
-                    payment_object = "service"
-                };
-                it.vat = new Vat() { type = "vat20" };
-                rt.receipt.items.Add(it);
-                rt.receipt.payments = new System.Collections.Generic.List<Payment>();
-                rt.receipt.payments.Add(new Payment() { sum = 10, type = 1 });
-                pData = Serializer.ToJson<RootObject>(rt);
-
-
-
-                byte[] ByteArr = Encoding.UTF8.GetBytes(pData);
-                request.ContentLength = ByteArr.Length;
-                request.GetRequestStream().Write(ByteArr, 0, ByteArr.Length);
-
-                //DataJSONPayload dataJSONPayload;
-
-            //    if (m_Config.debugLevel > 10)
-            //        Logs.LogAdd("Отправленный чек: " + pData);
-
-            //    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            //    {
-            //        using (StreamReader myStreamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-            //        {
-            //            DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(DataJSONPayload));
-            //            dataJSONPayload = (DataJSONPayload)jsonFormatter.ReadObject(myStreamReader.BaseStream);
-            //            UUID = dataJSONPayload.uuid;
-            //            status = dataJSONPayload.status;
-            //        }
-            //    }
-            //    if (m_Config.debugLevel > 3) Logs.LogAdd("Отправленная групповая: " + m_request.groupOperId + Environment.NewLine +
-            //                                                "Полученный token: " + token + Environment.NewLine +
-            //                                                "Полученный UID: " + UUID);
-            //}
-            //catch (WebException ex)
-            //{
-            //    var temp = ex.Response as HttpWebResponse;
-            //    Logs.LogAdd("ОШИБКА: " + ex.Message);
-            //    string content;
-
-            //    using (var r = new StreamReader(ex.Response.GetResponseStream()))
-            //        content = r.ReadToEnd();
-
-            //    try
-            //    {
-            //        using (var mm = new MemoryStream(Encoding.UTF8.GetBytes(content)))
-            //        {
-            //            using (StreamReader myStreamReader = new StreamReader(mm, Encoding.UTF8))
-            //            {
-            //                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(DataJSONPayload));
-            //                var errorDataJSONPayload = (DataJSONPayload)jsonFormatter.ReadObject(myStreamReader.BaseStream);
-            //                if (errorDataJSONPayload.error != null) exeptionMessage = errorDataJSONPayload.error.text;
-            //            }
-            //        }
-            //    }
-            //    catch (Exception)
-            //    {
-            //    }
-
-            //    switch (temp.StatusCode)
-            //    {
-            //        case HttpStatusCode.Unauthorized:
-            //            Logs.LogAdd("ОШИБКА: " + content
-            //                          + Environment.NewLine + "Номер групповой операции: " + m_request.groupOperId + " UUID: " + m_UUID);
-            //            break;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Logs.LogAdd("ОШИБКА: " + ex.Message + " ОШИБКА 2 : ");
-            //}
-            return UUID;
-        }
 
         public void Process()
         {
             NetworkStream stream = null;
+            kkmServiceResponseAtol respAtol = new kkmServiceResponseAtol();
             try
             {
                 stream = client.GetStream();
@@ -480,9 +198,10 @@ namespace ConsoleApplication
                 }
                 while (stream.DataAvailable);
                 string message = builder.ToString();
-                request m_req= Serializer.FromXml<request>(message);
-                //string outAtol=SendATOL(m_req);
-             
+                string forceXml = "";
+                kkmServiceRequest m_requests = Serializer.FromXml<kkmServiceRequest>(message);
+                kkmServiceResponse m_response = SendInfoToKKM(m_requests, out forceXml);
+                //GetPayment(, ref respAtol);
 
                 Console.WriteLine(message);
 
@@ -500,11 +219,23 @@ namespace ConsoleApplication
             }
         }
     }
-        class MyTcpListener
+    class MyTcpListener
     {
         public static void Main()
-        {
+         {
             TcpListener listener = null;
+            ServiceConfig m_Config=new ServiceConfig();
+            m_Config.debugLevel = 3;
+            m_Config.url = "https://testonline.atol.ru";
+            m_Config.callBackUrl = "http://testais.ru/?";
+            m_Config.login = "v4-online-atol-ru";
+            m_Config.password = "iGFFuihss";
+            m_Config.codeGroup = "v4-online-atol-ru_4179";
+            m_Config.inn = "5544332219";
+            m_Config.emailCompany= "kkt@kkt.ru";
+            m_Config.paymentAddr = "http://aisgorod.ru/";
+            m_Config.nameServices = "Оплата услуг";
+
             try
             {
                 Int32 port = 6000;
@@ -519,7 +250,7 @@ namespace ConsoleApplication
                 {
                     TcpClient client = listener.AcceptTcpClient();
                     Console.WriteLine("Connected!");
-                    ClientObject clientObject = new ClientObject(client);
+                    ClientObject clientObject = new ClientObject(client, m_Config);
                     // создаем новый поток для обслуживания нового клиента
                     Thread clientThread = new Thread(new ThreadStart(clientObject.Process));
                     clientThread.Start();

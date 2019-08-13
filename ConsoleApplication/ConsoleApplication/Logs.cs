@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace AIS.PAY.Framework.Util
+namespace ConsoleApplication
 {
     public static class Logs
     {

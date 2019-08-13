@@ -50,6 +50,7 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AtolOnline.cs" />
     <Compile Include="Logs.cs" />
     <Compile Include="ObjectForJson.cs" />
     <Compile Include="Program.cs" />

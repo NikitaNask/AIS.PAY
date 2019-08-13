@@ -2,13 +2,14 @@ using System;
 using System.ComponentModel;
 //using AIS.PAY.Framework.Util.WindowsServices.Configuration;
 
-namespace AIS.PAY.PaymentSendToKkm
+namespace ConsoleApplication
 {
-	[Serializable]
+    [Serializable]
 	public class ServiceConfig //: SqlServerTcpServiceConfiguration
     {
         private int m_HoursStart;
         private int m_MinutesStart;
+        private int m_debugLevel;
         private string m_kkmType;
         private string m_kkmTypeConnect;
         private string m_kkmIPAddress;
@@ -25,6 +26,7 @@ namespace AIS.PAY.PaymentSendToKkm
         private string m_emailCompany;
         private string m_nameServices;
 	    private string m_callBackUrl;
+
 
         [Category("Интервал закрытия смены")]
         [Description("Начало интервала. Час")]
@@ -161,6 +163,14 @@ namespace AIS.PAY.PaymentSendToKkm
         {
             get { return m_callBackUrl; }
             set { m_callBackUrl = value; }
+        }
+
+        [Category("АТОЛ-Онлайн")]
+        [Description("Отладка")]
+        public int debugLevel
+        {
+            get { return m_debugLevel; }
+            set { m_debugLevel = value; }
         }
     }
 }
