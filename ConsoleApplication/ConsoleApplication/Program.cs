@@ -482,7 +482,7 @@ namespace ConsoleApplication
                 string message = builder.ToString();
                 request m_req= Serializer.FromXml<request>(message);
                 //string outAtol=SendATOL(m_req);
-           
+             
 
                 Console.WriteLine(message);
 
