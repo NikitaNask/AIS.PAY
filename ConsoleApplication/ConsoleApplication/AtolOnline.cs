@@ -153,7 +153,7 @@ namespace ConsoleApplication
                 request.Headers.Add("Token", token);
 
                 string summ = m_request.summ;
-                //m_request.groupOperId = new Random().Next(100000);
+                m_request.groupOperId = new Random().Next(100000);
                 //m_request.groupOperId = 319979251;
                 m_request.email = "kkt@kkt.ru";
 
