@@ -201,7 +201,6 @@ namespace ConsoleApplication
                 string forceXml = "";
                 kkmServiceRequest m_requests = Serializer.FromXml<kkmServiceRequest>(message);
                 kkmServiceResponse m_response = SendInfoToKKM(m_requests, out forceXml);
-                //GetPayment(, ref respAtol);
 
                 Console.WriteLine(message);
 
