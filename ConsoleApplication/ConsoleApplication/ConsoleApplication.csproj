@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtolOnline.cs" />
+    <Compile Include="BalanceForThread.cs" />
     <Compile Include="Logs.cs" />
     <Compile Include="ObjectForJson.cs" />
     <Compile Include="Program.cs" />

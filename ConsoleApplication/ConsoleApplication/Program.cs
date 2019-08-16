@@ -252,6 +252,11 @@ namespace ConsoleApplication
                     ClientObject clientObject = new ClientObject(client, m_Config);
                     // создаем новый поток для обслуживания нового клиента
                     Thread clientThread = new Thread(new ThreadStart(clientObject.Process));
+                    // создаем новый поток для балансировщика
+
+                    BalanceForThread Thread1 = new BalanceForThread();
+                    Thread BalanceThread = new Thread(BalanceForThread.Thread1);
+
                     clientThread.Start();
                 }
             }
