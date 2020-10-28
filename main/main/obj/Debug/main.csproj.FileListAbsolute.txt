@@ -1,0 +1,14 @@
+C:\Naskalnyuk_Junior\main\main\obj\Debug\main.csprojResolveAssemblyReference.cache
+C:\Naskalnyuk_Junior\main\main\bin\Debug\main.exe.config
+C:\Naskalnyuk_Junior\main\main\bin\Debug\main.exe
+C:\Naskalnyuk_Junior\main\main\bin\Debug\main.pdb
+C:\Naskalnyuk_Junior\main\main\bin\Debug\Newtonsoft.Json.dll
+C:\Naskalnyuk_Junior\main\main\obj\Debug\main.exe
+C:\Naskalnyuk_Junior\main\main\obj\Debug\main.pdb
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\bin\Debug\main.exe.config
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\bin\Debug\main.exe
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\bin\Debug\Newtonsoft.Json.dll
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\obj\Debug\main.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\obj\Debug\main.exe
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\obj\Debug\main.pdb
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\main\main\bin\Debug\main.pdb

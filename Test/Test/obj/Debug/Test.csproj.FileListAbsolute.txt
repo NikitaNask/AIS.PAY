@@ -4,3 +4,9 @@ C:\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.pdb
 C:\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.exe
 C:\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.pdb
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.exe.config
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.exe
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.pdb
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.exe
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\Test\Test\bin\Debug\Test.pdb
+C:\Users\User\Desktop\лабораторные_работы\Диплом\Naskalnyuk_Junior\Test\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

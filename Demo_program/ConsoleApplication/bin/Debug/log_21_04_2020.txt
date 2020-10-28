@@ -1,0 +1,57 @@
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:01:53:493 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:01:54:156 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:02:17:251 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2ZkmEl5YPspX9NHFIj7oJgrHY1_u7I-hNO0EK8LBqv4bxXWVbtJk_ZO1Zyo8Y5NU4vEm
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:02:17:756 ОШИБКА: Удаленный сервер возвратил ошибку: (400) Недопустимый запрос.
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:02:17:896 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:02:17:898 Отправлена грууповая операция: 87010 Возвращенный UUID: Не присвоен
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:38:799 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:38:818 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:41:302 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2Zkm7V-AOANRbp-ljfuvZFPL_wNbdksfPHhiHfrnsJu8TBzBL08dPajKqJmu8qktTgaq
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:41:687 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:41:690 Отправлена грууповая операция: 28503 Возвращенный UUID: 043aef21-4876-4c2b-b4bd-6bff1d84c896
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:42:484 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:03:42:485 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:04:12:797 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:04:12:807 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:05:26:420 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:05:26:432 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:05:41:072 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2Zkm7V-AOANRbp-ljfuvZFPL_wNbdksfPHhiHfrnsJu8TBzBL08dPajKqJmu8qktTgaq
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:05:53:435 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:05:54:730 Отправлена грууповая операция: 59134 Возвращенный UUID: dcc2209e-8b8d-43a5-a0fe-468e77d29bfb
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:07:17:559 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:07:17:571 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:08:31:247 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2Zkm7V-AOANRbp-ljfuvZFPL_wNbdksfPHhiHfrnsJu8TBzBL08dPajKqJmu8qktTgaq
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:08:40:007 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:08:40:794 Отправлена грууповая операция: 94878 Возвращенный UUID: 9f864d21-b70c-4534-9aca-34f8257aea63
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:14:245 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:14:261 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:14:882 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2Zkm7V-AOANRbp-ljfuvZFPL_wNbdksfPHhiHfrnsJu8TBzBL08dPajKqJmu8qktTgaq
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:15:282 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:15:284 Отправлена грууповая операция: 18687 Возвращенный UUID: 8da58b34-ba8b-47e9-91c8-00a0f857e0b3
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:17:086 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:17:088 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:17:488 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:17:488 Отправлена грууповая операция: 35894 Возвращенный UUID: d3a703bf-68f7-4e94-8303-d074e70b417e
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:25:721 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:25:737 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:26:578 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2Zkm7V-AOANRbp-ljfuvZFPL_wNbdksfPHhiHfrnsJu8TBzBL08dPajKqJmu8qktTgaq
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:26:987 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:10:26:989 Отправлена грууповая операция: 56304 Возвращенный UUID: fa5ff681-b640-4f64-b7dd-e1a6c4f3751e
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:12:26:301 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:12:26:332 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:12:27:067 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2Zkm7V-AOANRbp-ljfuvZFPL_wNbdksfPHhiHfrnsJu8TBzBL08dPajKqJmu8qktTgaq
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:12:27:513 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:12:27:515 Отправлена грууповая операция: 20128 Возвращенный UUID: 7448a003-c5da-4e18-b5ce-49f58a346dd4
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:25:56:880 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:25:56:898 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:25:58:356 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2ZkmF41Cb28XvUrbuZq-rrL6nDe_5rsT5hAN9H5bJMjyvRHD-HI8kySP8lT7-sqbWAuf
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:25:58:742 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:25:58:744 Отправлена грууповая операция: 89024 Возвращенный UUID: 763a1c40-b370-4397-a1b6-762db28433b7
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:09:658 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:09:658 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979258
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:10:245 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:10:245 Отправлена грууповая операция: 46855 Возвращенный UUID: b18b3772-d4f9-4fa4-a670-f8bb1aeb1803
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:27:087 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:27:088 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979259
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:27:481 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 21.04.2020 17:28:27:481 Отправлена грууповая операция: 72965 Возвращенный UUID: 205a3a64-3937-4ae0-8066-54802cbfe193

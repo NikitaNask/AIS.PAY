@@ -1,0 +1,10 @@
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 14:55:44:473 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 14:55:44:753 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 14:58:07:700 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2ZkmR0GZjuntAdtbrk89FXWTTyEXX0I5My4vNkdY9Rmru-uVSmI0gqVezsR5fSjMQAWP
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 15:02:32:573 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 15:04:05:295 Отправлена грууповая операция: 86076 Возвращенный UUID: 71d56c3c-2103-4250-adb5-08cb5517efff
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 16:20:29:950 Данные для ККМ: m_Config.kkmTypeProtokol = 0 m_Config.kkmIPAddress =  m_Config.kkmPort = 0
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 16:20:29:964 SendPaymentATOL()Пытаюсь отправить чек с групповой: 319979257
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 16:21:30:817 Токен получен: 9hXZNo8FFAgm0wAu8J_SbI_S0Be6wp8Bfh0M76DpY2Bxzj3HLmRjqHtcbz6W2ZkmUHVSEW8T3WmKthyYRC8PdtaaAqoTaiKWbXcsTzQ54NRM1TRIsMVTbWOWRHfMlPfC
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 16:26:32:880 Отправка на АТОЛОнлайн: 
+IP: fe80::d1bb:9ae7:ad77:8675%11 Время: 01.04.2020 16:31:08:439 Отправлена грууповая операция: 17359 Возвращенный UUID: 15f0128f-4737-46cc-90f0-36763d83599d
